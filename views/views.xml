@@ -17,11 +17,11 @@
 
     <!-- actions opening views on models -->
 
-   <!--  <record model="ir.actions.act_window" id="hairdresser.action_window">
+    <record model="ir.actions.act_window" id="hairdresser.action_window">
       <field name="name">hairdresser window</field>
       <field name="res_model">hairdresser.hairdresser</field>
       <field name="view_mode">tree,form</field>
-    </record> -->
+    </record>
 
 
     <!-- server action to the one above -->
@@ -42,18 +42,18 @@
 
     <!-- Top menu item -->
 
-    <!-- <menuitem name="hairdresser" id="hairdresser.menu_root"/> -->
+    <menuitem name="hairdresser" id="hairdresser.menu_root"/>
 
     <!-- menu categories -->
 
-    <!-- <menuitem name="Menu 1" id="hairdresser.menu_1" parent="hairdresser.menu_root"/>
-    <menuitem name="Menu 2" id="hairdresser.menu_2" parent="hairdresser.menu_root"/>
+    <menuitem name="Menu 1" id="hairdresser.menu_1" parent="hairdresser.menu_root"/>
+<!--    <menuitem name="Menu 2" id="hairdresser.menu_2" parent="hairdresser.menu_root"/>
 -->
     <!-- actions -->
 
-    <!--- <menuitem name="List" id="hairdresser.menu_1_list" parent="hairdresser.menu_1"
+    <menuitem name="List" id="hairdresser.menu_1_list" parent="hairdresser.menu_1"
               action="hairdresser.action_window"/>
-    <menuitem name="Server to list" id="hairdresser" parent="hairdresser.menu_2"
+<!--    <menuitem name="Server to list" id="hairdresser" parent="hairdresser.menu_2"
               action="hairdresser.action_server"/>
 -->
   </data>
