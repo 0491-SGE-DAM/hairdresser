@@ -18,10 +18,12 @@ class Site(models.Model):
   area = fields.Float(string='Superficie', help ='Superficie en m2', required = True)
   active = fields.Boolean(string='Activa')
   comments = fields.Text(string='Comentarios')
-
-  def calcula_fecha(self):
-    return date.today()
+  opening_date = fields.Date(string='Fecha inauguración', default = lambda self: fields.Date.today())
   
-  opening_date = fields.Date(string='Fecha inauguración', default = date.today())
+  # def calcula_fecha(self):
+  #   return date.today()
+  
+  # opening_date = fields.Date(string='Fecha inauguración', default = date.today())
+  
 
   
