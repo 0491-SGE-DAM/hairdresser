@@ -1,4 +1,7 @@
-from odoo import models, fields
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+
+import re
 
 # from datetime import date
 
@@ -29,3 +32,10 @@ class Site(models.Model):
         ('code_length_check', 'CHECK(length(code) = 5)', 'El nombre debe tener 5 caracteres.'),
         ('unique_code_id', 'unique(code)', 'El código de la sede tiene que ser único.'),
   ]
+
+  @api.constrains('code')
+  def _check_code(self):
+    for record in self:
+      pattern = re.compile('^[A-Z]{2}\d{3}$')
+      if not pattern.match(record.code):
+        raise ValidationError('El formato del código debe ser AANNN')
