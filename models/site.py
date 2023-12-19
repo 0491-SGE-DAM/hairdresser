@@ -25,5 +25,7 @@ class Site(models.Model):
   
   # opening_date = fields.Date(string='Fecha inauguración', default = date.today())
   
-
-  
+  _sql_constraints = [
+        ('code_length_check', 'CHECK(length(code) = 5)', 'El nombre debe tener 5 caracteres.'),
+        ('unique_code_id', 'unique(code)', 'El código de la sede tiene que ser único.'),
+  ]
