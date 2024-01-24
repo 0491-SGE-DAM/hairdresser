@@ -13,6 +13,8 @@ class Site(models.Model):
   _name = 'hairdresser.site'
   _description = 'Define cada una de las sedes de la cadena'
 
+  name = fields.Char(string = 'Nombre')
+
   code = fields.Char(string='Código', help ='Código de la sede', required = True, index = True, size = 5, trim = False)
   address = fields.Char(string='Dirección', required = True)
   city = fields.Char(string='Ciudad', required = True, default = 'Valencia') 
