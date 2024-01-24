@@ -12,6 +12,7 @@ class Site(models.Model):
 
   _name = 'hairdresser.site'
   _description = 'Define cada una de las sedes de la cadena'
+  _rec_name = 'code'
 
   name = fields.Char(string = 'Nombre')
 
