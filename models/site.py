@@ -16,15 +16,15 @@ class Site(models.Model):
 
   name = fields.Char(string = 'Nombre')
 
-  code = fields.Char(string='Código', help ='Código de la sede', required = True, index = True, size = 5, trim = False)
-  address = fields.Char(string='Dirección', required = True)
-  city = fields.Char(string='Ciudad', required = True, default = 'Valencia') 
+  code = fields.Char(string = 'Código', help = 'Código de la sede', required = True, index = True, size = 5, trim = False)
+  address = fields.Char(string = 'Dirección', required = True)
+  city = fields.Char(string = 'Ciudad', required = True, default = 'Valencia') 
 
-  capacity = fields.Integer(required = True)
-  area = fields.Float(string='Superficie', help ='Superficie en m2', required = True)
-  is_active = fields.Boolean(string='Activa')
-  comments = fields.Text(string='Comentarios')
-  opening_date = fields.Date(string='Fecha inauguración', default = lambda self: fields.Date.today())
+  capacity = fields.Integer(string = 'Aforo', required = True)
+  area = fields.Float(string = 'Superficie', help ='Superficie en m2', required = True)
+  is_active = fields.Boolean(string = 'Activa')
+  comments = fields.Text(string = 'Comentarios')
+  opening_date = fields.Date(string = 'Fecha inauguración', default = lambda self: fields.Date.today())
   
   # def calcula_fecha(self):
   #   return date.today()
