@@ -19,7 +19,7 @@ class Site(models.Model):
 
   capacity = fields.Integer(required = True)
   area = fields.Float(string='Superficie', help ='Superficie en m2', required = True)
-  active = fields.Boolean(string='Activa')
+  is_active = fields.Boolean(string='Activa')
   comments = fields.Text(string='Comentarios')
   opening_date = fields.Date(string='Fecha inauguración', default = lambda self: fields.Date.today())
   
