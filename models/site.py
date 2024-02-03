@@ -20,7 +20,7 @@ class Site(models.Model):
   address = fields.Char(string = 'Dirección', required = True)
   city = fields.Char(string = 'Ciudad', required = True, default = 'Valencia') 
 
-  capacity = fields.Integer(string = 'Aforo', compute = '_compute_capacity', readonly = False, store = True)
+  capacity = fields.Integer(string = 'Aforo', compute = '_compute_capacity', inverse = '_inverse_compute_capacity', store = True)
   area = fields.Float(string = 'Superficie', help ='Superficie en m2', required = True)
   is_active = fields.Boolean(string = 'Activa')
   comments = fields.Text(string = 'Comentarios')
@@ -50,3 +50,11 @@ class Site(models.Model):
         record.capacity = 0
       else:
         record.capacity = int(record.area / 2) 
+
+  # @api.depends('capacity') no tienen efecto   
+  def _inverse_compute_capacity(self):
+    for record in self:
+      if record.capacity == False:
+        record.area = 0.0
+      else:
+        record.area = record.capacity*2  # area minima que debe tener el local
