@@ -20,7 +20,7 @@ class Site(models.Model):
   address = fields.Char(string = 'Dirección', required = True)
   city = fields.Char(string = 'Ciudad', required = True, default = 'Valencia') 
 
-  capacity = fields.Integer(string = 'Aforo', required = True)
+  capacity = fields.Integer(string = 'Aforo', compute = '_compute_capacity')
   area = fields.Float(string = 'Superficie', help ='Superficie en m2', required = True)
   is_active = fields.Boolean(string = 'Activa')
   comments = fields.Text(string = 'Comentarios')
@@ -42,3 +42,11 @@ class Site(models.Model):
       pattern = re.compile('^[A-Z]{2}\d{3}$')
       if not pattern.match(record.code):
         raise ValidationError('El formato del código debe ser AANNN')
+      
+  @api.depends('area')    
+  def _compute_capacity(self):
+    for record in self:
+      if record.area == False:
+        record.capacity = 0
+      else:
+        record.capacity = int(record.area / 2) 
