@@ -42,6 +42,18 @@ class Site(models.Model):
       pattern = re.compile('^[A-Z]{2}\d{3}$')
       if not pattern.match(record.code):
         raise ValidationError('El formato del código debe ser AANNN')
+
+  @api.constrains('area')
+  def _check_code(self):
+    for record in self:
+      if record.area < 0:
+        raise ValidationError('El valor del área debe ser mayor de 0')
+      
+  @api.constrains('capacity')
+  def _check_code(self):
+    for record in self:
+      if record.capacity < 0:
+        raise ValidationError('El valor del aforo debe ser mayor de 0')
       
   @api.depends('area')    
   def _compute_capacity(self):
@@ -49,12 +61,14 @@ class Site(models.Model):
       if record.area == False:
         record.capacity = 0
       else:
+        record.area = abs(record.area)
         record.capacity = int(record.area / 2) 
 
-  # @api.depends('capacity') no tienen efecto   
+  @api.depends('capacity')   
   def _inverse_compute_capacity(self):
     for record in self:
       if record.capacity == False:
         record.area = 0.0
       else:
+        record.capacity = abs(record.capacity)
         record.area = record.capacity*2  # area minima que debe tener el local
