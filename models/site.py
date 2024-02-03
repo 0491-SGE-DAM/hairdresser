@@ -20,7 +20,7 @@ class Site(models.Model):
   address = fields.Char(string = 'Dirección', required = True)
   city = fields.Char(string = 'Ciudad', required = True, default = 'Valencia') 
 
-  capacity = fields.Integer(string = 'Aforo', compute = '_compute_capacity')
+  capacity = fields.Integer(string = 'Aforo', compute = '_compute_capacity', readonly = False, store = True)
   area = fields.Float(string = 'Superficie', help ='Superficie en m2', required = True)
   is_active = fields.Boolean(string = 'Activa')
   comments = fields.Text(string = 'Comentarios')
